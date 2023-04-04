@@ -1,4 +1,4 @@
-package com.slayerd.designpatterns.singleton;
+package com.slayerd.designpatterns.singleton.principle;
 
 import java.util.concurrent.atomic.AtomicLong;
 

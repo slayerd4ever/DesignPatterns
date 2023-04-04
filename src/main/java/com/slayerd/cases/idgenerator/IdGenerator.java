@@ -1,4 +1,4 @@
-package com.slayerd.utils;
+package com.slayerd.cases.idgenerator;
 
 import com.slayerd.exceptions.IdGenerateFailureException;
 

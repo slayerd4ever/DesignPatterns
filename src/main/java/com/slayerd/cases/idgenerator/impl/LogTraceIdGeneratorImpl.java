@@ -1,8 +1,8 @@
-package com.slayerd.utils.impl;
+package com.slayerd.cases.idgenerator.impl;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.slayerd.exceptions.IdGenerateFailureException;
-import com.slayerd.utils.IdGenerator;
+import com.slayerd.cases.idgenerator.IdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
