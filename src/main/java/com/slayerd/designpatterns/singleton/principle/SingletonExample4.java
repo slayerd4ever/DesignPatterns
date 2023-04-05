@@ -8,14 +8,14 @@ import java.util.concurrent.atomic.AtomicLong;
  * @since 2023-04-03
  */
 public class SingletonExample4 {
-    private AtomicLong atomicLong = new AtomicLong(0);
+    private final AtomicLong atomicLong = new AtomicLong(0);
 
     private static class SingletonCreater{
-        private static final SingletonExample4 instace = new SingletonExample4();
+        private static final SingletonExample4 instance = new SingletonExample4();
     }
 
-    public SingletonExample4 getInstace(){
-        return SingletonCreater.instace;
+    public SingletonExample4 getInstance(){
+        return SingletonCreater.instance;
     }
 
     public Long getId(){

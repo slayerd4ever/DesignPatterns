@@ -8,8 +8,8 @@ import java.util.concurrent.atomic.AtomicLong;
  * @since 2023-04-03
  */
 public class SingletonExample3 {
-    private AtomicLong atomicLong = new AtomicLong(0);
-    private static SingletonExample3 instance ;
+    private final AtomicLong atomicLong = new AtomicLong(0);
+    private static volatile SingletonExample3 instance ;
 
     private SingletonExample3(){}
 

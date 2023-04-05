@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public enum SingletonExample5 {
     INSTANCE;
-    private AtomicLong atomicLong = new AtomicLong(0);
+    private final AtomicLong atomicLong = new AtomicLong(0);
 
     public Long getId(){
         return atomicLong.incrementAndGet();

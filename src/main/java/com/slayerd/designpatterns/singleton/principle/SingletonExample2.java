@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @since 2023-04-03
  */
 public class SingletonExample2 {
-    private AtomicLong atomicLong = new AtomicLong(0);
+    private final AtomicLong atomicLong = new AtomicLong(0);
     private static SingletonExample2 instance;
 
     private SingletonExample2(){}
