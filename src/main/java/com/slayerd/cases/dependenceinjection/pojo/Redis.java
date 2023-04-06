@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Redis {
     private String ipAddress;
-    private int port;
+    private String port;
 
-    public Redis(String ipAddress, int port) {
+    public Redis(String ipAddress, String port) {
         this.ipAddress = ipAddress;
         this.port = port;
     }

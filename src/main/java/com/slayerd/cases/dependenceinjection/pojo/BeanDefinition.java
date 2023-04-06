@@ -11,7 +11,7 @@ import java.util.List;
 public class BeanDefinition {
     private String id;
     private String clazzName;
-    private List<ConstructorArg> constructorArgs = new ArrayList<>();
+    private List<ConstructorArg> constructorArgs;
     private Scope scope = Scope.SINGLETON;
     private boolean lazyInit = false;
 
