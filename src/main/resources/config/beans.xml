@@ -4,7 +4,7 @@
         <contructor-arg ref="redis"/>
     </bean>
 
-    <bean id="redis" class="com.slayerd.cases.dependenceinjection.pojo.Redis" singleton="true" lazy_init ="true">
+    <bean id="redis" class="com.slayerd.cases.dependenceinjection.pojo.Redis" scope="singleton" lazy_init ="true">
         <contructor-arg type="String" value="127.0.0.1"/>
         <contructor-arg type="int" value="0616"/>
     </bean>
