@@ -18,11 +18,17 @@ public class BeanFactory {
     private ConcurrentHashMap<String, Object> singletonBeans = new ConcurrentHashMap<String, Object>();
     private ConcurrentHashMap<String, BeanDefinition> beanDefinitions = new ConcurrentHashMap<String, BeanDefinition>();
 
-    private List<BeanDefinition> safe(List<BeanDefinition> beanDefinitions) {
-        if (beanDefinitions == null || beanDefinitions.isEmpty()) {
+    /**
+     * list判空
+     * @param list
+     * @return
+     * @param <T>
+     */
+    private <T> List<T> safe(List<T> list) {
+        if (list == null || list.isEmpty()) {
             return Collections.emptyList();
         }
-        return beanDefinitions;
+        return list;
     }
 
     /**
@@ -61,16 +67,28 @@ public class BeanFactory {
             Object[] argObjects = new Object[constructorArgs.size()];
             for (int i = 0; i < constructorArgs.size(); i++) {
                 ConstructorArg constructorArg = constructorArgs.get(i);
-                if (constructorArg.isRef()) {
+                if (!constructorArg.isRef()) {
+                    //不是引用类型,只需要将bean标签中的type(type)和value(arg)放入数组即可
                     argClasses[i] = constructorArg.getType();
                     argObjects[i] = constructorArg.getArg();
                 }else {
-
+                    //是引用类型,则需要判断元数据List中是否存在引用的bean的元数据,然后将bean标签中引用的Bean的class对象放入class数组,将引用Bean元数据创建后的实例化对象放入Object数组
+                    BeanDefinition refBeanDefinition = beanDefinitions.get(constructorArg.getArg());
+                    if (refBeanDefinition == null){
+                        throw new NoSuchBeanDefinitionException("Bean is not Defined:" + constructorArg.getArg());
+                    }
+                    argClasses[i] = Class.forName(refBeanDefinition.getClazzName());
+                    argObjects[i] = creatBean(refBeanDefinition);
                 }
             }
+            bean = beanClazz.getConstructor(argClasses).newInstance(argObjects);
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
             throw new RuntimeException(e);
         } finally {
+            if (bean != null && beanDefinition.isSingleton()){
+                this.singletonBeans.putIfAbsent(beanDefinition.getId(),bean);
+                return this.singletonBeans.get(beanDefinition.getId());
+            }
             return bean;
         }
     }
