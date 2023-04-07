@@ -345,3 +345,18 @@ public class BeanFactory {
 
 PS:创建Bean过程会获取此Bean中的构造器参数类,然后通过反射调用其构造器方法,将构造器参数类中的参数放入,然后通过newInstance()方法创建实例.
 
+**调用方法**
+```java
+/**
+ * 测试DI注入
+ * @author slayerd
+ * @since 2023/4/6
+ */
+public class Application {
+    public static void main(String[] args) {
+        ApplicationContext applicationContext = new XmlConfigApplicationContext("config/beans.xml");
+        RedisPool redisPool = (RedisPool) applicationContext.getBean("redisPool");
+        redisPool.test();
+    }
+}
+```
