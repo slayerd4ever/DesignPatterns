@@ -1,6 +1,7 @@
 # 案例及小工具（ID生成器、高性能计数器、虚拟钱包...）
 
 ## 1.DI注入器
+代码路径:com.slayerd.cases.dependenceinjection
 ### 1.Bean元数据类
 存放每个Bean的Id,class路径,构造器参数(有参构造方法入参),是否单例,是否延迟加载
 ```java
